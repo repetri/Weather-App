@@ -17,7 +17,7 @@
                 <f7-navbar >HomeWeatherService</f7-navbar>
                 <f7-toolbar tabbar>
                     <f7-link tab-link="#tab1">Weersverwachting</f7-link>
-                    <f7-link tab-link="#tab3">Huidige weer</f7-link>
+                    <f7-link tab-link="#tab3" tab-active >Huidige weer</f7-link>
                     <f7-link tab-link="#tab2">Weer gescheidenis</f7-link>
                     <f7-link tab-link="#tab4">weeralarm (Engels)</f7-link>
                 </f7-toolbar>
@@ -80,7 +80,7 @@
                     <f7-tab id="tab3" tab-active>
                         <i v-bind:class="['wu', 'wu-white', 'wu-256', 'wu-' + today.current_observation.icon]"></i>
                         <f7-row>
-                            <f7-col width="100" tablet-width="50">
+                            <f7-col width="200" tablet-width="80">
                                 <f7-card title="Station informatie">
                                     <f7-list>
                                         <f7-list-item title="Station:">{{today.current_observation.station_id}}</f7-list-item>
