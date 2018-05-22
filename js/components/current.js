@@ -2,7 +2,7 @@ dataStore.today = {};
 
 Vue.component('current',{
     template:'\
-<f7-page name="current">\
+<f7-page class="page-current">\
     <i v-bind:class="[\'wu\', \'wu-white\', \'wu-256\', \'wu-\' + today.current_observation.icon]"></i>\
         <f7-row>\
             <f7-col width="70" tablet-width="60" desktop-width="100">\

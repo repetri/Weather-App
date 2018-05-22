@@ -32,6 +32,7 @@ var chartOptions = {
     }
 };
 
+
 Vue.component('history',{
     template: '<f7-page class="page-history"></f7-page>'
 });
@@ -182,7 +183,7 @@ var App = new Vue({
               var minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes();
               App.graphData.time.push(hours + ':' + minutes);
               App.graphData.temperature.push(App.today.current_observation.temp_c);
-              App.graphData.humidity.push(parseInt(dataStore.today.current_observation.relative_humidity.replace('%', '')));
+              App.graphData.humidity.push(parseInt(App.today.current_observation.relative_humidity.replace('%', '')));
               App.graphData.pressure.push(parseInt(App.today.current_observation.pressure_mb));
               App.graphData.windspeed.push(App.today.current_observation.wind_kph);
               localStorage.setItem('timeData', JSON.stringify(App.graphData.time));
