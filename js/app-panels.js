@@ -34,18 +34,6 @@ var chartOptions = {
 
 
 
-Vue.component('current',{
-    template: '<f7-page class="page-current"></f7-page>'
-});
-
-Vue.component('history',{
-    template: '<f7-page class="page-history"></f7-page>'
-});
-
-Vue.component('alerts',{
-    template: '<f7-page class="page-alerts"></f7-page>'
-});
-
 Vue.use(Framework7Vue, Framework7);
 
 //http://api.wunderground.com/api/c6e1c7dd478fbb42/conditions/q/NL/ijsselstein.json
@@ -57,24 +45,7 @@ var App = new Vue({
   // Init Framework7. All Framework7 parameters should be passed in "framework7" property, e.g.:
   framework7: {
     // Array with app routes
-    routes: [
-        {
-            path:'/forecast/',
-            component:'forecast'
-        },
-        {
-            path:'/current/',
-            component:'current'
-        },
-        {
-            path:'/history/',
-            component:'history'
-        },
-        {
-            path:'/alerts/',
-            component:'alerts'
-        }
-    ],
+    routes: [],
     // App Name
     name: 'My App',
     // App id
@@ -168,8 +139,7 @@ var App = new Vue({
               currentDate: [data.date.day, data.date.monthname_short, data.date.year].toString().replace(/,/g,"-")
 
           };
-          //App.upcomming.forecast[path] = forecast;
-          dataStore.forecast[path] = forecast;
+          App.upcomming.forecast[path] = forecast;
           console.log('test');
       },
       fetchLocation: function(){
@@ -220,7 +190,7 @@ var App = new Vue({
           App.$f7.request.get('http://api.wunderground.com/api/c6e1c7dd478fbb42/alerts/lang:NL/q/NL/ijsselstein.json', function(data){
               data = JSON.parse(data);
 
-
+            
 
             if(data.alerts.length === 0){
                   App.WeatherWarnings.text = 'No weather warninings are currently issued. This may change so keep updated via local infromation sources ';

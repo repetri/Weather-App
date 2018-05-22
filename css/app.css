@@ -1,3 +1,11 @@
 .card-header{
     font-weight: bold;
 }
+
+.list_button{
+    color: blue;
+    border: 1px;
+    text-align: center;
+    font-size: 16px;
+    
+}
