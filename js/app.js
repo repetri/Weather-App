@@ -187,17 +187,17 @@ var App = new Vue({
 
       },
       loadWeatherWarnings: function(){
-          App.$f7.request.get('http://api.wunderground.com/api/c6e1c7dd478fbb42/alerts/lang:NL/q/NL/ijsselstein.json'), function(data){
+          App.$f7.request.get('http://api.wunderground.com/api/c6e1c7dd478fbb42/alerts/lang:NL/q/NL/ijsselstein.json', function(data){
               data = JSON.parse(data);
 
-              App.WeatherWarnings = data;
+            
 
-            /*if(data.length == null){
+            if(data.alerts.length === 0){
                   App.WeatherWarnings.text = 'No weather warninings are currently issued. This may change so keep updated via local infromation sources ';
               }
               else{
               App.WeatherWarnings = data;
-            }*/
+            }
           });
       },
 
