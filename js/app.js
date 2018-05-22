@@ -32,12 +32,6 @@ var chartOptions = {
     }
 };
 
-
-
-Vue.component('current',{
-    template: '<f7-page class="page-current"></f7-page>'
-});
-
 Vue.component('history',{
     template: '<f7-page class="page-history"></f7-page>'
 });
@@ -181,14 +175,14 @@ var App = new Vue({
       },
       loadToday: function(){
           App.$f7.request.get('http://api.wunderground.com/api/c6e1c7dd478fbb42/conditions/lang:NL/q/' + this.locationText.country + '/' + this.locationText.city + '.json', function(data){
-              App.today = JSON.parse(data);
-
+              //App.today = JSON.parse(data);
+              dataStore.today = JSON.parse(data);
               var date = new Date();
               var hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours();
               var minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes();
               App.graphData.time.push(hours + ':' + minutes);
               App.graphData.temperature.push(App.today.current_observation.temp_c);
-              App.graphData.humidity.push(parseInt(App.today.current_observation.relative_humidity.replace('%', '')));
+              App.graphData.humidity.push(parseInt(dataStore.today.current_observation.relative_humidity.replace('%', '')));
               App.graphData.pressure.push(parseInt(App.today.current_observation.pressure_mb));
               App.graphData.windspeed.push(App.today.current_observation.wind_kph);
               localStorage.setItem('timeData', JSON.stringify(App.graphData.time));
