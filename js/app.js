@@ -187,7 +187,7 @@ var App = new Vue({
 
       },
       loadWeatherWarnings: function(){
-          App.$f7.request.get('http://api.wunderground.com/api/c6e1c7dd478fbb42/alerts/lang:NL/q/NL/ijsselstein'), function(data){
+          App.$f7.request.get('http://api.wunderground.com/api/c6e1c7dd478fbb42/alerts/lang:NL/q/NL/ijsselstein.JSON'), function(data){
               data = JSON.parse(data);
 
               App.WeatherWarnings = data;
