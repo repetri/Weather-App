@@ -37,10 +37,11 @@ mounted: function(){
         setInterval(this.loadForecast, 600000);
     }
     else{
+        var instance = this;
         document.addEventListener('locationFound', function(){
-        this.loadForecast();
-        setInterval(this.loadForecast, 600000);
-    });
+            instance.loadForecast();
+            setInterval(this.loadForecast, 600000);
+        });
   }
 },
 
