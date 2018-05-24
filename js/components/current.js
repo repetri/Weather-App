@@ -53,8 +53,9 @@ mounted: function(){
         setInterval(this.loadCurrent, 600000);
     }
     else{
+        var instance = this;
         document.addEventListener('locationFound', function(){
-            this.loadCurrent();
+            instance.loadCurrent();
             setInterval(this.loadCurrent, 600000);
         });
     }

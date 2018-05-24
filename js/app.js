@@ -51,6 +51,7 @@ var App = new Vue({
 mounted: function(){
   document.addEventListener('locationFound', function(){});
   this.fetchCoords();
+  this.$f7.tab.show('#tab1', false);
 
 },
 // App root methods

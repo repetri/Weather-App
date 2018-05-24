@@ -30,12 +30,16 @@ data: function(){
 },
 
 mounted: function(){
-    this.loadWeatherWarnings();
-    setInterval(this.loadWeatherWarnings, 600000);
+    var instance = this;
+    setTimeout(function(){
+        instance.loadWeatherWarnings();
+        setInterval(this.loadWeatherWarnings, 600000);
+    }, 3000);
 },
 
 methods:{
 loadWeatherWarnings: function(){
+
     App.$f7.request.get('http://api.wunderground.com/api/c6e1c7dd478fbb42/alerts/lang:NL/q/NL/ijsselstein.json', function(data){
     data = JSON.parse(data);
     if(data.alerts.length === 0){

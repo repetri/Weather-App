@@ -7,5 +7,8 @@
     border: 1px;
     text-align: center;
     font-size: 16px;
-    
+
+}
+.tab .page{
+    padding-top: 110px;
 }
