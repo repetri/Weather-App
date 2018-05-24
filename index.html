@@ -1,135 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <script src="vendor/vue.js"></script>
-        <script src="vendor/framework7/dist/js/framework7.js"></script>
-        <script src="vendor/framework7-vue.js"></script>
-        <script src="vendor/Chart.js/Chart.js"></script>
-        <link rel="stylesheet" href="vendor/framework7/dist/css/framework7.css">
-        <link rel="stylesheet" type="text/css" href="css/app.css">
-        <link rel="stylesheet" href="vendor/weather-underground-icons-master/dist/wu-icons-style.css">
+        <meta charset="utf-8"></meta>
+        <script>
+            var width = window.innerWidth||window.screen.availHeigt||document.documentElement.clientWidth||document.body.clientWidth;
+            var height = window.innerHeigt||window.screen.availWidth||document.documentElement.clientHeight||document.body.clientHeight;
+            if(width > 720 && height > 480){
+                location.href = 'tabs.html';
+            }
+            else{
+                location.href = 'panels.html';
+            }
+        </script>
     </head>
-    <body>
-        <div id="app" class="theme-dark">
-
-            <f7-page>
-                <f7-navbar >HomeWeatherService</f7-navbar>
-                <f7-toolbar tabbar width="70" tablet-width="60" desktop-width="100">
-                    <f7-link tab-link="#tab1">Weersverwachting</f7-link>
-                    <f7-link tab-link="#tab3" tab-link-active>Huidige weer</f7-link>
-                    <f7-link tab-link="#tab2">Weer gescheidenis</f7-link>
-                    <f7-link tab-link="#tab4">weeralarm (Engels)</f7-link>
-                </f7-toolbar>
-                    <f7-tabs>
-                        <f7-tab id="tab1">
-                            <f7-row>
-                                <f7-col v-for="day in upcomming.forecast" width="50" tablet-width="25">
-                                    <f7-card v-bind:title="day.dayOfWeek" v-bind:footer="day.currentDate">
-                                        <f7-list>
-                                            <f7-list-item><i v-bind:class="['wu', 'wu-white', 'wu-64', 'wu-'+ day.icon]"></i></f7-list-item>
-                                            <f7-list-item title="Weersverwachting:">{{day.expcetedConditions}}</f7-list-item>
-                                            <f7-list-item title="Tempratuur dag:">{{ day.tempHigh }} &deg; C</f7-list-item>
-                                            <f7-list-item title="Tempratuur nacht:">{{day.tempLow}} &deg; C</f7-list-item>
-                                            <f7-list-item title="Luchtvochtigheid:">{{day.humid}} %</f7-list-item>
-                                            <f7-list-item title="Neerslag dag:">{{day.dayDownpoor}} mm</f7-list-item>
-                                            <f7-list-item title="Neerslag nacht:">{{day.nightDownpoor}} mm</f7-list-item>
-                                            <f7-list-item title="Windrichting:">{{day.WindDirection}}</f7-list-item>
-                                            <f7-list-item title="Windrichting in graden:">{{day.WindDirDegrees}} &deg; </f7-list-item>
-                                            <f7-list-item title="Windsnelheid:">{{day.WindAveSpeed}} km/h</f7-list-item>
-                                            <f7-list-item title="Snelheid windstoten:">{{day.WindGustSpeed}} km/h</f7-list-item>
-                                        </f7-list>
-                                    </f7-card>
-                                </f7-col>
-                            </f7-row>
-                    </f7-tab>
-                    <f7-tab id="tab2">
-                        <f7-row>
-                            <f7-col width="100" tablet-width="50">
-                                <f7-card title="Grafiek tempratuur in &deg; C">
-                                    <div>
-                                        <canvas id="tempChart"></canvas>
-                                    </div>
-                                </f7-card>
-                            </f7-col>
-                            <f7-col width="100" tablet-width="50">
-                                <f7-card title="Grafiek Luchtvochtigheid in %">
-                                    <div>
-                                        <canvas id="HumChart"></canvas>
-                                    </div>
-                                </f7-card>
-                            </f7-col>
-                        </f7-row>
-                        <f7-row>
-                            <f7-col width="100" tablet-width="50">
-                                <f7-card title="Grafiek Luchtdruk in milibar">
-                                    <div>
-                                        <canvas id="PresChart"></canvas>
-                                    </div>
-                                </f7-card>
-                            </f7-col>
-                            <f7-col width="100" tablet-width="50">
-                                <f7-card title="Grafiek Windsnelheid in km/h">
-                                    <div>
-                                        <canvas id="WindChart"></canvas>
-                                    </div>
-                                </f7-card>
-                            </f7-col>
-                        </f7-row>
-                    </f7-tab>
-                    <f7-tab id="tab3" tab-active>
-                        <i v-bind:class="['wu', 'wu-white', 'wu-256', 'wu-' + today.current_observation.icon]"></i>
-                        <f7-row>
-                            <f7-col width="70" tablet-width="60" desktop-width="100">
-                                <f7-card title="Station informatie">
-                                    <f7-list>
-                                        <f7-list-item title="Station:">{{today.current_observation.station_id}}</f7-list-item>
-                                        <f7-list-item title="locatie:">{{today.current_observation.observation_location.full}}{{today.current_observation.observation_location.country}}</f7-list-item>
-                                        <f7-list-item title="Geupdate op:">{{Date(today.current_observation.observation_epoch)}}</f7-list-item>
-                                    </f7-list>
-                                </f7-card>
-                                <f7-card title="Huidige weer data">
-                                    <f7-list>
-                                        <f7-list-item title="Omstandigheden:">{{today.current_observation.weather}}</f7-list-item>
-                                        <f7-list-item title="Tempratuur:">{{ today.current_observation.temp_c }} °C</f7-list-item>
-                                        <f7-list-item title="Gevoels tempratuur:">{{today.current_observation.feelslike_c}} °C</f7-list-item>
-                                        <f7-list-item title="Windchill:">{{today.current_observation.windchill_c}} °C</f7-list-item>
-                                        <f7-list-item title="Neerslag in 1 uur:">{{today.current_observation.precip_1hr_metric}} mm</f7-list-item>
-                                        <f7-list-item title="Totale neerslag vandaag:">{{today.current_observation.precip_today_metric}} mm</f7-list-item>
-                                        <f7-list-item title="Luchtvochtigheid:">{{today.current_observation.relative_humidity}}</f7-list-item>
-                                        <f7-list-item title="Windrichting:">{{today.current_observation.wind_dir}}</f7-list-item>
-                                        <f7-list-item title="Windrichting in graden:">{{today.current_observation.wind_degrees}} °</f7-list-item>
-                                        <f7-list-item title="Windsnelheid:">{{today.current_observation.wind_kph}} km/h</f7-list-item>
-                                        <f7-list-item title="Snelheid windstoten:">{{today.current_observation.wind_gust_kph}} km/h</f7-list-item>
-                                        <f7-list-item title="Luchtdruk:">{{today.current_observation.pressure_mb}} milibar</f7-list-item>
-                                        <f7-list-item title="Zicht:">{{today.current_observation.visibility_km}} km</f7-list-item>
-                                        <f7-list-item title="Zonnestraling:">{{today.current_observation.solarradiation}} W/m²</f7-list-item>
-                                        <f7-list-item title="UV-index:">{{today.current_observation.UV}}</f7-list-item>
-                                        <f7-list-item title="Dauwpunt:">{{today.current_observation.dewpoint_c}} °C</f7-list-item>
-                                        <f7-list-item title="Hitte-index">{{today.current_observation.heat_index_c}} °C</f7-list-item>
-                                    </f7-list>
-                                </f7-card>
-                            </f7-tab>
-                        <f7-tab id="tab4">
-                        <f7-card title="Weerswaarschuwing" v-for="warning in WeatherWarnings.alerts">
-                            <f7-list>
-                                <f7-list-item title="Weerswaarschuwing: ">{{warning.wtype_meteoalarm_name}}</f7-list-item>
-                                <f7-list-item title="TEXT CODE: ">{{warning.type}}</f7-list-item>
-                                <f7-list-item title="Kleur CODE:">{{warning.level_meteoalarm_name}}</f7-list-item>
-                                <f7-list-item title="Weer omschrijving: ">{{warning.message.split(" ",5).join().replace(/,/g,' ')}}</f7-list-item>
-                                <f7-list-item title="waarschuwing geldig tot: ">{{warning.expires}}</f7-list-item>
-                                <f7-list-item title="Omschrijving waarschuwing: "></f7-list-item>
-                                <f7-list-item>{{warning.level_meteoalarm_description}}</f7-list-item>
-                            </f7-list>
-                        </f7-card>
-                        <f7-card title="Weerswaarschuwing" v-if="WeatherWarnings.text !== undefined">
-                            <f7-list>
-                                <f7-list-item>{{WeatherWarnings.text}}</f7-list-item>
-                            </f7-list>
-                        </f7-card>
-                    </f7-tab>
-            </f7-page>
-        </div>
-        <script src="js/app.js"></script>
-    </body>
+    <body></body>
 </html>
