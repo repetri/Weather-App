@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="css/app.css">
         <link rel="stylesheet" href="vendor/weather-underground-icons-master/dist/wu-icons-style.css">
     </head>
+
     <body>
         <div id="app" class="theme-dark">
 
@@ -17,13 +18,19 @@
                 <f7-navbar >HomeWeatherService</f7-navbar>
                 <f7-toolbar tabbar width="70" tablet-width="60" desktop-width="100">
                     <f7-link tab-link="#tab1">Weersverwachting</f7-link>
-                    <f7-link tab-link="#tab3" tab-link-active>Huidige weer</f7-link>
-                    <f7-link tab-link="#tab2">Weer gescheidenis</f7-link>
+                    <f7-link tab-link="#tab2">Huidige weer</f7-link>
+                    <f7-link tab-link="#tab3">Weer gescheidenis</f7-link>
                     <f7-link tab-link="#tab4">weeralarm (Engels)</f7-link>
                 </f7-toolbar>
-                    <f7-tabs>
+
+                <f7-tabs>
                         <f7-tab id="tab1">
-                            <f7-row>
+                            <p>TEST</p>
+                            <f7-link href="/forecast/"></f7-link>
+
+
+
+                            <!-- <f7-row>
                                 <f7-col v-for="day in upcomming.forecast" width="50" tablet-width="25">
                                     <f7-card v-bind:title="day.dayOfWeek" v-bind:footer="day.currentDate">
                                         <f7-list>
@@ -41,10 +48,10 @@
                                         </f7-list>
                                     </f7-card>
                                 </f7-col>
-                            </f7-row>
-                    </f7-tab>
+                            </f7-row> -->
+                        </f7-tab>
                     <f7-tab id="tab2">
-                        <f7-row>
+                        <!-- <f7-row>
                             <f7-col width="100" tablet-width="50">
                                 <f7-card title="Grafiek tempratuur in &deg; C">
                                     <div>
@@ -75,10 +82,10 @@
                                     </div>
                                 </f7-card>
                             </f7-col>
-                        </f7-row>
+                        </f7-row> -->
                     </f7-tab>
-                    <f7-tab id="tab3" tab-active>
-                        <i v-bind:class="['wu', 'wu-white', 'wu-256', 'wu-' + today.current_observation.icon]"></i>
+                    <f7-tab id="tab3">
+                        <!-- <i v-bind:class="['wu', 'wu-white', 'wu-256', 'wu-' + today.current_observation.icon]"></i>
                         <f7-row>
                             <f7-col width="70" tablet-width="60" desktop-width="100">
                                 <f7-card title="Station informatie">
@@ -108,28 +115,17 @@
                                         <f7-list-item title="Dauwpunt:">{{today.current_observation.dewpoint_c}} °C</f7-list-item>
                                         <f7-list-item title="Hitte-index">{{today.current_observation.heat_index_c}} °C</f7-list-item>
                                     </f7-list>
-                                </f7-card>
+                                </f7-card>-->
                             </f7-tab>
                         <f7-tab id="tab4">
-                        <f7-card title="Weerswaarschuwing" v-for="warning in WeatherWarnings.alerts">
-                            <f7-list>
-                                <f7-list-item title="Weerswaarschuwing: ">{{warning.wtype_meteoalarm_name}}</f7-list-item>
-                                <f7-list-item title="TEXT CODE: ">{{warning.type}}</f7-list-item>
-                                <f7-list-item title="Kleur CODE:">{{warning.level_meteoalarm_name}}</f7-list-item>
-                                <f7-list-item title="Weer omschrijving: ">{{warning.message.split(" ",5).join().replace(/,/g,' ')}}</f7-list-item>
-                                <f7-list-item title="waarschuwing geldig tot: ">{{warning.expires}}</f7-list-item>
-                                <f7-list-item title="Omschrijving waarschuwing: "></f7-list-item>
-                                <f7-list-item>{{warning.level_meteoalarm_description}}</f7-list-item>
-                            </f7-list>
-                        </f7-card>
-                        <f7-card title="Weerswaarschuwing" v-if="WeatherWarnings.text !== undefined">
-                            <f7-list>
-                                <f7-list-item>{{WeatherWarnings.text}}</f7-list-item>
-                            </f7-list>
-                        </f7-card>
+
                     </f7-tab>
+                </tabs>
             </f7-page>
         </div>
+        <script>
+        var dataStore = {};
+        </script>
         <script src="js/app.js"></script>
     </body>
 </html>
