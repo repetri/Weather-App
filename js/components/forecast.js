@@ -5,7 +5,6 @@ dataStore.forecast = {
 Vue.component('forecast',{
     template: '\
     <div class="page">\
-    <f7-row>\
         <f7-col v-for="day in forecast.days" width="100">\
             <f7-card v-bind:title="day.dayOfWeek" v-bind:footer="day.currentDate">\
                 <f7-list>\
@@ -23,7 +22,6 @@ Vue.component('forecast',{
                 </f7-list>\
             </f7-card>\
         </f7-col>\
-    </f7-row>\
     </div>\
 ',
 
