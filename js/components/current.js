@@ -7,9 +7,9 @@ dataStore.current = {
 Vue.component('current',{
     template:'\
     <div class="page">\
-        <i v-bind:class="[\'wu\', \'wu-white\', \'wu-256\', \'wu-\' + current.current_observation.icon]"></i>\
-        <f7-row>\
-            <f7-col width="70" tablet-width="60" desktop-width="100">\
+    <f7-row>\
+        <f7-col width="70" tablet-width="60" desktop-width="100">\
+            <i v-bind:class="[\'wu\', \'wu-white\', \'wu-256\', \'wu-\' + current.current_observation.icon]"></i>\
                 <f7-card title="Station informatie">\
                     <f7-list>\
                         <f7-list-item title="Station:">{{current.current_observation.station_id}}</f7-list-item>\

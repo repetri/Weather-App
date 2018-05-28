@@ -7,7 +7,7 @@ Vue.component('warnings',{
     template:'\
     <div class="page">\
         <f7-row>\
-            <f7-col width="50" tablet-width="25">\
+            <f7-col width="100" tablet-width="50">\
                 <f7-card title="Weerswaarschuwing" v-for="warning in warnings.alerts">\
                     <f7-list>\
                         <f7-list-item title="Weerswaarschuwing: ">{{warnings.wtype_meteoalarm_name}}</f7-list-item>\
