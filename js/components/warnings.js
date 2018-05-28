@@ -6,22 +6,26 @@ dataStore.warnings = {
 Vue.component('warnings',{
     template:'\
     <div class="page">\
-        <f7-card title="Weerswaarschuwing" v-for="warning in warnings.alerts">\
-            <f7-list>\
-                <f7-list-item title="Weerswaarschuwing: ">{{warnings.wtype_meteoalarm_name}}</f7-list-item>\
-                <f7-list-item title="TEXT CODE: ">{{warnings.type}}</f7-list-item>\
-                <f7-list-item title="Kleur CODE:">{{warnings.level_meteoalarm_name}}</f7-list-item>\
-                <f7-list-item title=\"Weer omschrijving: \">{{warnings.message.split(\" \",5).join().replace(\/,\/g,\" \")}}</f7-list-item>\
-                <f7-list-item title="waarschuwing geldig tot: ">{{warnings.expires}}</f7-list-item>\
-                <f7-list-item title="Omschrijving waarschuwing: "></f7-list-item>\
-                <f7-list-item>{{warnings.level_meteoalarm_description}}</f7-list-item>\
-            </f7-list>\
-        </f7-card>\
-        <f7-card title="Weerswaarschuwing" v-if="warnings.text !== undefined">\
-            <f7-list>\
-                <f7-list-item>{{warnings.text}}</f7-list-item>\
-            </f7-list>\
-        </f7-card>\
+        <f7-row>\
+            <f7-col width="50" tablet-width="25">\
+                <f7-card title="Weerswaarschuwing" v-for="warning in warnings.alerts">\
+                    <f7-list>\
+                        <f7-list-item title="Weerswaarschuwing: ">{{warnings.wtype_meteoalarm_name}}</f7-list-item>\
+                        <f7-list-item title="TEXT CODE: ">{{warnings.type}}</f7-list-item>\
+                        <f7-list-item title="Kleur CODE:">{{warnings.level_meteoalarm_name}}</f7-list-item>\
+                        <f7-list-item title=\"Weer omschrijving: \">{{warnings.message.split(\" \",5).join().replace(\/,\/g,\" \")}}</f7-list-item>\
+                        <f7-list-item title="waarschuwing geldig tot: ">{{warnings.expires}}</f7-list-item>\
+                        <f7-list-item title="Omschrijving waarschuwing: "></f7-list-item>\
+                        <f7-list-item>{{warnings.level_meteoalarm_description}}</f7-list-item>\
+                    </f7-list>\
+                </f7-card>\
+                <f7-card title="Weerswaarschuwing" v-if="warnings.text !== undefined">\
+                    <f7-list>\
+                        <f7-list-item>{{warnings.text}}</f7-list-item>\
+                    </f7-list>\
+                </f7-card>\
+            </f7-col>\
+        </f7-row>\
     </div>\
 ',
 
