@@ -6,7 +6,7 @@ Vue.component('forecast',{
     template: '\
     <div class="page">\
     <f7-row>\
-        <f7-col v-for="day in forecast.days" width="100" tablet-width="10">\
+        <f7-col v-for="day in forecast.days" width="100">\
             <f7-card v-bind:title="day.dayOfWeek" v-bind:footer="day.currentDate">\
                 <f7-list>\
                     <f7-list-item><i v-bind:class="[\'wu\', \'wu-white\', \'wu-64\', \'wu-\'+day.icon]"></i></f7-list-item>\
