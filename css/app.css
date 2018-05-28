@@ -12,3 +12,7 @@
 .tab .page{
     padding-top: 100px;
 }
+
+.view-main{
+    overflow: auto;
+}
