@@ -16,3 +16,7 @@
 .view-main{
     overflow: auto;
 }
+
+.page-previous{
+    display: none;
+}
