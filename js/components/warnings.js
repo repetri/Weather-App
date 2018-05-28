@@ -39,6 +39,7 @@ mounted: function(){
         instance.loadWeatherWarnings();
         setInterval(this.loadWeatherWarnings, 600000);
     }, 3000);
+    App.scrollToTop();
 },
 
 methods:{

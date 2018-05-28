@@ -48,6 +48,7 @@ data: function(){
 },
 
 mounted: function(){
+
     if(dataStore.location.city !== undefined){
         this.loadCurrent();
         setInterval(this.loadCurrent, 600000);
@@ -59,6 +60,7 @@ mounted: function(){
             setInterval(this.loadCurrent, 600000);
         });
     }
+    App.scrollToTop();
 },
 
 methods: {

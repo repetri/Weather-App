@@ -43,6 +43,7 @@ mounted: function(){
             setInterval(this.loadForecast, 600000);
         });
   }
+  App.scrollToTop();
 },
 
 methods: {
