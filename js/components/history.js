@@ -42,7 +42,7 @@ Vue.component('history',{
     <div class="page">\
         <f7-row>\
             <f7-col width="100" tablet-width="auto">\
-                <f7-card title="Grafiek tempratuur in &deg; C">\
+                <f7-card title="Grafiek tempratuur in °C">\
                     <div>\
                         <canvas id="tempChart"></canvas>\
                     </div>\
@@ -92,6 +92,7 @@ mounted: function(){
 },
 
 methods:{
+
     renderGraphs: function(){
         var ctx = document.getElementById('tempChart');
         new Chart(ctx, {

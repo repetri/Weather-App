@@ -13,7 +13,7 @@ Vue.component('warnings',{
                         <f7-list-item title="Weerswaarschuwing: ">{{warnings.wtype_meteoalarm_name}}</f7-list-item>\
                         <f7-list-item title="TEXT CODE: ">{{warnings.type}}</f7-list-item>\
                         <f7-list-item title="Kleur CODE:">{{warnings.level_meteoalarm_name}}</f7-list-item>\
-                        <f7-list-item title=\"Weer omschrijving: \">{{warnings.message.split(\" \",5).join().replace(\/,\/g,\" \")}}</f7-list-item>\
+                        <f7-list-item title="Weer omschrijving:">{{warnings.message.split(" ",5).join().replace(/,/g," ")}}</f7-list-item>\
                         <f7-list-item title="waarschuwing geldig tot: ">{{warnings.expires}}</f7-list-item>\
                         <f7-list-item title="Omschrijving waarschuwing: "></f7-list-item>\
                         <f7-list-item>{{warnings.level_meteoalarm_description}}</f7-list-item>\
@@ -34,12 +34,13 @@ data: function(){
 },
 
 mounted: function(){
+    App.scrollToTop();
     var instance = this;
     setTimeout(function(){
         instance.loadWeatherWarnings();
         setInterval(this.loadWeatherWarnings, 600000);
     }, 3000);
-    App.scrollToTop();
+
 },
 
 methods:{
