@@ -41,7 +41,7 @@ Vue.component('history',{
     template:'\
     <div class="page">\
         <f7-row>\
-            <f7-col width="100" tablet-width="50">\
+            <f7-col width="100" tablet-width="auto">\
                 <f7-card title="Grafiek tempratuur in &deg; C">\
                     <div>\
                         <canvas id="tempChart"></canvas>\
