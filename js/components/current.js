@@ -8,7 +8,7 @@ Vue.component('current',{
     template:'\
     <div class="page">\
     <f7-row>\
-        <f7-col width="70" tablet-width="60" desktop-width="100">\
+        <f7-col width="100" tablet-width="80">\
             <i v-bind:class="[\'wu\', \'wu-white\', \'wu-256\', \'wu-\' + current.current_observation.icon]"></i>\
                 <f7-card title="Station informatie">\
                     <f7-list>\
