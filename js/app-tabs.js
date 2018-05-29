@@ -1,4 +1,5 @@
 dataStore.location = {};
+dataStore.isScrollable = false;
 
 Vue.use(Framework7Vue, Framework7);
 
@@ -85,6 +86,10 @@ methods: {
             dataStore.location = data.location;
             document.dispatchEvent(new Event('locationFound'));
         });
+    },
+    scrollToTop: function(){
+        var elements = document.getElementsByClassName('view-main');
+        elements[0].scrollTo(0,0);
     }
   }
 });

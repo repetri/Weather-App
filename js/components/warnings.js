@@ -10,13 +10,13 @@ Vue.component('warnings',{
             <f7-col width="100" tablet-width="auto">\
                 <f7-card title="Weerswaarschuwing" v-for="warning in warnings.alerts">\
                     <f7-list>\
-                        <f7-list-item title="Weerswaarschuwing: ">{{warnings.wtype_meteoalarm_name}}</f7-list-item>\
-                        <f7-list-item title="TEXT CODE: ">{{warnings.type}}</f7-list-item>\
-                        <f7-list-item title="Kleur CODE:">{{warnings.level_meteoalarm_name}}</f7-list-item>\
-                        <f7-list-item title="Weer omschrijving:">{{warnings.message.split(" ",5).join().replace(/,/g," ")}}</f7-list-item>\
-                        <f7-list-item title="waarschuwing geldig tot: ">{{warnings.expires}}</f7-list-item>\
+                        <f7-list-item title="Weerswaarschuwing: ">{{warning.wtype_meteoalarm_name}}</f7-list-item>\
+                        <f7-list-item title="TEXT CODE: ">{{warning.type}}</f7-list-item>\
+                        <f7-list-item title="Kleur CODE:">{{warning.level_meteoalarm_name}}</f7-list-item>\
+                        <f7-list-item title="Weer omschrijving:">{{warning.message}}</f7-list-item>\
+                        <f7-list-item title="waarschuwing geldig tot: ">{{warning.expires}}</f7-list-item>\
                         <f7-list-item title="Omschrijving waarschuwing: "></f7-list-item>\
-                        <f7-list-item>{{warnings.level_meteoalarm_description}}</f7-list-item>\
+                        <f7-list-item>{{warning.level_meteoalarm_description}}</f7-list-item>\
                     </f7-list>\
                 </f7-card>\
                 <f7-card title="Weerswaarschuwing" v-if="warnings.text !== undefined">\
@@ -34,7 +34,9 @@ data: function(){
 },
 
 mounted: function(){
-    App.scrollToTop();
+    if(dataStore.isScrollable){
+        App.scrollToTop();
+    }
     var instance = this;
     setTimeout(function(){
         instance.loadWeatherWarnings();

@@ -48,7 +48,9 @@ data: function(){
 },
 
 mounted: function(){
-    App.scrollToTop();
+    if(dataStore.isScrollable){
+        App.scrollToTop();
+    }
     if(dataStore.location.city !== undefined){
         this.loadCurrent();
         setInterval(this.loadCurrent, 600000);

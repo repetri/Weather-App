@@ -80,7 +80,9 @@ data: function(){
 },
 
 mounted: function(){
-    App.scrollToTop();
+    if(dataStore.isScrollable){
+        App.scrollToTop();
+    }
     document.addEventListener('newHistoryData', this.renderGraphs);
     dataStore.history.time = (JSON.parse(localStorage.getItem('timeData')) != null) ? JSON.parse(localStorage.getItem('timeData', '[]')) : [];
     dataStore.history.temperature = (JSON.parse(localStorage.getItem('temperatureData')) != null) ? JSON.parse(localStorage.getItem('temperatureData')) : [];
@@ -88,7 +90,6 @@ mounted: function(){
     dataStore.history.pressure = (JSON.parse(localStorage.getItem('pressureData')) != null) ? JSON.parse(localStorage.getItem('pressureData')) : [];
     dataStore.history.windspeed = (JSON.parse(localStorage.getItem('windspeedData')) != null) ? JSON.parse(localStorage.getItem('windspeedData')) : [];
     this.renderGraphs();
-
 },
 
 methods:{

@@ -1,5 +1,6 @@
 
 dataStore.location = {};
+dataStore.isScrollable = true;
 
 Vue.use(Framework7Vue, Framework7);
 
@@ -46,7 +47,8 @@ var App = new Vue({
       },
     WeatherWarnings: {
 
-    }
+    },
+    isScrollable: true
   },
 mounted: function(){
   document.addEventListener('locationFound', function(){});
@@ -90,6 +92,9 @@ methods: {
     scrollToTop: function(){
         var elements = document.getElementsByClassName('view-main');
         elements[0].scrollTo(0,0);
+    },
+    historyClicked: function(event){
+        document.dispatchEvent(new Event('newHistoryData'));
     }
   }
 });
