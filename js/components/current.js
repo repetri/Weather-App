@@ -88,7 +88,7 @@ mounted: function(){
             loadCurrent();
         });
     }
-    document.addEventListener("APICall", function(){
+    document.addEventListener("CurrentCall", function(){
         console.log("every 10 mins");
         loadCurrent();
 

@@ -52,7 +52,7 @@ mounted: function(){
   document.addEventListener('locationFound', function(){});
   this.fetchCoords();
   this.$f7.tab.show('#tab1', false);
-  this.testCall();
+  this.APICall();
 
 },
 // App root methods
@@ -84,6 +84,7 @@ methods: {
     APICall: function(){
         setInterval(function(){
             document.dispatchEvent(new Event('CurrentCall'));
+            document.dispatchEvent(new Event('ForecastCall'))
         },600000);
     },
 

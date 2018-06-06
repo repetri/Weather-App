@@ -10,6 +10,7 @@ function loadForecast(){
             convertForecastData(data.forecast.simpleforecast.forecastday[i], i);
         }
     });
+    console.log("loadForecast compleeted");
 };
 
 function convertForecastData(data, path){
@@ -29,6 +30,7 @@ function convertForecastData(data, path){
         currentDate: [data.date.day, data.date.monthname_short, data.date.year].toString().replace(/,/g,"-")
     };
     dataStore.forecast.days.push(forecast);
+    console.log("convertForecastData compleeted");
 }
 
 
@@ -73,7 +75,7 @@ data: function(){
 
             });
         }
-        documetn.addEventListener("APICall",function(){
+        document.addEventListener("ForecastCall",function(){
                 loadForecast();
                 console.log("loaded forecast");
         });
