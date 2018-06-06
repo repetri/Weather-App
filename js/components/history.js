@@ -101,7 +101,7 @@ function renderGraphs(){
         options: chartOptions
     });
     console.log("renderGraphs");
-    console.log(dataStore.history);
+    console.log(renderGraphs(););
 };
 
 
