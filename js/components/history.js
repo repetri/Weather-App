@@ -38,7 +38,7 @@ var chartOptions = {
 };
 
 function loadHistory(){
-    document.addEventListener('newHistoryData', this.renderGraphs);
+    //document.addEventListener('newHistoryData', this.renderGraphs);
     dataStore.history.time = (JSON.parse(localStorage.getItem('timeData')) != null) ? JSON.parse(localStorage.getItem('timeData', '[]')) : [];
     dataStore.history.temperature = (JSON.parse(localStorage.getItem('temperatureData')) != null) ? JSON.parse(localStorage.getItem('temperatureData')) : [];
     dataStore.history.humidity = (JSON.parse(localStorage.getItem('humidityData')) != null) ? JSON.parse(localStorage.getItem('humidityData')) : [];
@@ -151,6 +151,9 @@ mounted: function(){
     loadHistory();
     document.addEventListener('HistoryCall',function(){
         loadHistory();
+    });
+    document.addEventListener('newHistoryData',function(){
+        renderGraphs();
     });
 },
 
