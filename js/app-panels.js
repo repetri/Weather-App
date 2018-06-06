@@ -96,5 +96,13 @@ methods: {
     historyClicked: function(event){
         document.dispatchEvent(new Event('newHistoryData'));
     }
+    APICall: function(){
+        setInterval(function(){
+            document.dispatchEvent(new Event('CurrentCall'));
+            document.dispatchEvent(new Event('ForecastCall'));
+            document.dispatchEvent(new Event('HistoryCall'));
+            document.dispatchEvent(new Event('WarningCall'));
+        },600000);
+    }
   }
 });
