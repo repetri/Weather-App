@@ -152,7 +152,10 @@ mounted: function(){
     document.addEventListener('HistoryCall',function(){
         loadHistory();
     });
-    document.addEventListener('newHistoryData',renderGraphs());
+    document.addEventListener('newHistoryData',funciotn(){
+        console.log("newHistoryData added");
+        renderGraphs();
+    });
 },
 
 methods:{
