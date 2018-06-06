@@ -101,7 +101,7 @@ function renderGraphs(){
         options: chartOptions
     });
     console.log("renderGraphs");
-    console.log(renderGraphs(););
+    console.log(renderGraphs());
 };
 
 
