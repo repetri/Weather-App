@@ -153,8 +153,8 @@ mounted: function(){
         loadHistory();
     });
     document.addEventListener('newHistoryData',function(){
+l       loadHistory();
         console.log("newHistoryData added");
-        loadHistory();
     });
 },
 
