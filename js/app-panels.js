@@ -54,7 +54,7 @@ mounted: function(){
   document.addEventListener('locationFound', function(){});
   this.fetchCoords();
   this.$f7.router.navigate('/forecast/',{});
-
+  this.APICall();
 },
 // App root methods
 methods: {
