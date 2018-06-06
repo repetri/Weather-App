@@ -28,7 +28,6 @@ function loadCurrent(){
             dataStore.history.windspeed.shift();
         }
         document.dispatchEvent(new Event('newHistoryData'));
-        console.log("current compleeted");
     });
 };
 
@@ -89,9 +88,7 @@ mounted: function(){
         });
     }
     document.addEventListener("CurrentCall", function(){
-        console.log("every 10 mins");
         loadCurrent();
-
     });
 },
 
