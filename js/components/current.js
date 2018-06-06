@@ -4,6 +4,34 @@ dataStore.current = {
     }
 };
 
+function loadCurrent(){
+    App.$f7.request.get('http://api.wunderground.com/api/c6e1c7dd478fbb42/conditions/lang:NL/q/' + dataStore.location.country + '/' + dataStore.location.city + '.json', function(data){
+        dataStore.current = JSON.parse(data);
+        var date = new Date();
+        var hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours();
+        var minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes();
+        dataStore.history.time.push(hours + ':' + minutes);
+        dataStore.history.temperature.push(dataStore.current.current_observation.temp_c);
+        dataStore.history.humidity.push(parseInt(dataStore.current.current_observation.relative_humidity.replace('%', '')));
+        dataStore.history.pressure.push(parseInt(dataStore.current.current_observation.pressure_mb));
+        dataStore.history.windspeed.push(dataStore.current.current_observation.wind_kph);
+        localStorage.setItem('timeData', JSON.stringify(dataStore.history.time));
+        localStorage.setItem('temperatureData', JSON.stringify(dataStore.history.temperature));
+        localStorage.setItem('humidityData',JSON.stringify(dataStore.history.humidity));
+        localStorage.setItem('pressureData',JSON.stringify(dataStore.history.pressure));
+        localStorage.setItem('windspeedData',JSON.stringify(dataStore.history.windspeed));
+        if(dataStore.history.time.length > 144){
+            dataStore.history.time.shift();
+            dataStore.history.temperature.shift();
+            dataStore.history.humidity.shift();
+            dataStore.history.pressure.shift();
+            dataStore.history.windspeed.shift();
+        }
+        document.dispatchEvent(new Event('newHistoryData'));
+        console.log("current compleeted");
+    });
+};
+
 Vue.component('current',{
     template:'\
     <div class="page">\
@@ -51,45 +79,23 @@ mounted: function(){
     if(dataStore.isScrollable){
         App.scrollToTop();
     }
+
     if(dataStore.location.city !== undefined){
-        this.loadCurrent();
-        setInterval(this.loadCurrent, 600000);
+        loadCurrent();
     }
     else{
-        var instance = this;
         document.addEventListener('locationFound', function(){
-            instance.loadCurrent();
-            setInterval(this.loadCurrent, 600000);
+            loadCurrent();
         });
     }
+    document.addEventListener("APICall", function(){
+        console.log("every 10 mins");
+        loadCurrent();
+
+    });
 },
 
 methods: {
-    loadCurrent: function(){
-        App.$f7.request.get('http://api.wunderground.com/api/c6e1c7dd478fbb42/conditions/lang:NL/q/' + dataStore.location.country + '/' + dataStore.location.city + '.json', function(data){
-            dataStore.current = JSON.parse(data);
-            var date = new Date();
-            var hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours();
-            var minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes();
-            dataStore.history.time.push(hours + ':' + minutes);
-            dataStore.history.temperature.push(dataStore.current.current_observation.temp_c);
-            dataStore.history.humidity.push(parseInt(dataStore.current.current_observation.relative_humidity.replace('%', '')));
-            dataStore.history.pressure.push(parseInt(dataStore.current.current_observation.pressure_mb));
-            dataStore.history.windspeed.push(dataStore.current.current_observation.wind_kph);
-            localStorage.setItem('timeData', JSON.stringify(dataStore.history.time));
-            localStorage.setItem('temperatureData', JSON.stringify(dataStore.history.temperature));
-            localStorage.setItem('humidityData',JSON.stringify(dataStore.history.humidity));
-            localStorage.setItem('pressureData',JSON.stringify(dataStore.history.pressure));
-            localStorage.setItem('windspeedData',JSON.stringify(dataStore.history.windspeed));
-            if(dataStore.history.time.length > 144){
-                dataStore.history.time.shift();
-                dataStore.history.temperature.shift();
-                dataStore.history.humidity.shift();
-                dataStore.history.pressure.shift();
-                dataStore.history.windspeed.shift();
-            }
-            document.dispatchEvent(new Event('newHistoryData'));
-        });
-    },
-  }
+
+    }
 });

@@ -2,6 +2,36 @@ dataStore.forecast = {
     days: []
 };
 
+function loadForecast(){
+    App.$f7.request.get('http://api.wunderground.com/api/c6e1c7dd478fbb42/forecast/lang:NL/q/' + dataStore.location.country + '/' + dataStore.location.city + '.json', function(data){
+        dataStore.forecast.days = [];
+        data = JSON.parse(data);
+        for(i = 0; i < data.forecast.simpleforecast.forecastday.length; i++){
+            convertForecastData(data.forecast.simpleforecast.forecastday[i], i);
+        }
+    });
+};
+
+function convertForecastData(data, path){
+    var forecast = {
+        dayOfWeek: data.date.weekday,
+        icon: data.icon,
+        tempHigh: data.high.celsius,
+        tempLow: data.low.celsius,
+        expcetedConditions: data.conditions,
+        humid: data.avehumidity,
+        dayDownpoor: (data.qpf_day.mm == null) ? 0 : data.qpf_day.mm,
+        nightDownpoor: data.qpf_night.mm,
+        WindDirection: data.avewind.dir,
+        WindDirDegrees: data.avewind.degrees,
+        WindAveSpeed: data.avewind.kph,
+        WindGustSpeed: data.maxwind.kph,
+        currentDate: [data.date.day, data.date.monthname_short, data.date.year].toString().replace(/,/g,"-")
+    };
+    dataStore.forecast.days.push(forecast);
+}
+
+
 Vue.component('forecast',{
     template: '\
     <div class="page">\
@@ -33,49 +63,26 @@ data: function(){
 
     mounted: function(){
         if(dataStore.location.city !== undefined){
-            this.loadForecast();
-            setInterval(this.loadForecast, 600000);
+            loadForecast();
+
         }
         else{
             var instance = this;
             document.addEventListener('locationFound', function(){
-                instance.loadForecast();
-                setInterval(this.loadForecast, 600000);
+                loadForecast();
+
             });
         }
+        documetn.addEventListener("APICall",function(){
+                loadForecast();
+                console.log("loaded forecast");
+        });
 
         if(dataStore.isScrollable){
             App.scrollToTop();
         }
     },
     methods: {
-        loadForecast: function(){
-            var instance = this;
-            App.$f7.request.get('http://api.wunderground.com/api/c6e1c7dd478fbb42/forecast/lang:NL/q/' + dataStore.location.country + '/' + dataStore.location.city + '.json', function(data){
-                dataStore.forecast.days = [];
-                data = JSON.parse(data);
-                for(i = 0; i < data.forecast.simpleforecast.forecastday.length; i++){
-                    instance.convertForecastData(data.forecast.simpleforecast.forecastday[i], i);
-                }
-            });
-        },
-        convertForecastData: function(data, path){
-            var forecast = {
-                dayOfWeek: data.date.weekday,
-                icon: data.icon,
-                tempHigh: data.high.celsius,
-                tempLow: data.low.celsius,
-                expcetedConditions: data.conditions,
-                humid: data.avehumidity,
-                dayDownpoor: (data.qpf_day.mm == null) ? 0 : data.qpf_day.mm,
-                nightDownpoor: data.qpf_night.mm,
-                WindDirection: data.avewind.dir,
-                WindDirDegrees: data.avewind.degrees,
-                WindAveSpeed: data.avewind.kph,
-                WindGustSpeed: data.maxwind.kph,
-                currentDate: [data.date.day, data.date.monthname_short, data.date.year].toString().replace(/,/g,"-")
-            };
-            dataStore.forecast.days.push(forecast);
-        }
+
     }
 });

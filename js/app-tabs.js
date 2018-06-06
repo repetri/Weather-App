@@ -52,6 +52,7 @@ mounted: function(){
   document.addEventListener('locationFound', function(){});
   this.fetchCoords();
   this.$f7.tab.show('#tab1', false);
+  this.testCall();
 
 },
 // App root methods
@@ -78,6 +79,12 @@ methods: {
                 maximumAge: 0
             }
         );
+    },
+
+    APICall: function(){
+        setInterval(function(){
+            document.dispatchEvent(new Event('CurrentCall'));
+        },600000);
     },
 
     fetchLocation: function(){
