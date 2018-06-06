@@ -37,6 +37,71 @@ var chartOptions = {
     }
 };
 
+function loadHistory(){
+    document.addEventListener('newHistoryData', this.renderGraphs);
+    dataStore.history.time = (JSON.parse(localStorage.getItem('timeData')) != null) ? JSON.parse(localStorage.getItem('timeData', '[]')) : [];
+    dataStore.history.temperature = (JSON.parse(localStorage.getItem('temperatureData')) != null) ? JSON.parse(localStorage.getItem('temperatureData')) : [];
+    dataStore.history.humidity = (JSON.parse(localStorage.getItem('humidityData')) != null) ? JSON.parse(localStorage.getItem('humidityData')) : [];
+    dataStore.history.pressure = (JSON.parse(localStorage.getItem('pressureData')) != null) ? JSON.parse(localStorage.getItem('pressureData')) : [];
+    dataStore.history.windspeed = (JSON.parse(localStorage.getItem('windspeedData')) != null) ? JSON.parse(localStorage.getItem('windspeedData')) : [];
+    //renderGraphs(); test this first for panels-js!!!!!!!!!!!
+};
+
+function renderGraphs(){
+    var ctx = document.getElementById('tempChart');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: dataStore.history.time,
+            datasets: [{
+                data: dataStore.history.temperature,
+                borderColor: '#2DFF00'
+            }]
+        },
+        options: chartOptions
+    });
+
+    var ctx = document.getElementById('HumChart');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: dataStore.history.time,
+            datasets: [{
+                data: dataStore.history.humidity,
+                borderColor: '#2DFF00'
+            }]
+        },
+        options: chartOptions
+    });
+
+    var ctx = document.getElementById('PresChart');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: dataStore.history.time,
+            datasets: [{
+                data: dataStore.history.pressure,
+                borderColor: '#2DFF00'
+            }]
+        },
+        options: chartOptions
+    });
+
+    var ctx = document.getElementById('WindChart');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: dataStore.history.time,
+            datasets: [{
+                data: dataStore.history.windspeed,
+                borderColor: '#2DFF00'
+            }]
+        },
+        options: chartOptions
+    });
+};
+
+
 Vue.component('history',{
     template:'\
     <div class="page">\
@@ -83,69 +148,13 @@ mounted: function(){
     if(dataStore.isScrollable){
         App.scrollToTop();
     }
-    document.addEventListener('newHistoryData', this.renderGraphs);
-    dataStore.history.time = (JSON.parse(localStorage.getItem('timeData')) != null) ? JSON.parse(localStorage.getItem('timeData', '[]')) : [];
-    dataStore.history.temperature = (JSON.parse(localStorage.getItem('temperatureData')) != null) ? JSON.parse(localStorage.getItem('temperatureData')) : [];
-    dataStore.history.humidity = (JSON.parse(localStorage.getItem('humidityData')) != null) ? JSON.parse(localStorage.getItem('humidityData')) : [];
-    dataStore.history.pressure = (JSON.parse(localStorage.getItem('pressureData')) != null) ? JSON.parse(localStorage.getItem('pressureData')) : [];
-    dataStore.history.windspeed = (JSON.parse(localStorage.getItem('windspeedData')) != null) ? JSON.parse(localStorage.getItem('windspeedData')) : [];
-    this.renderGraphs();
+    loadHistory();
+    document.addEventListener('HistoryCall',function(){
+        loadHistory();
+    });
 },
 
 methods:{
 
-    renderGraphs: function(){
-        var ctx = document.getElementById('tempChart');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: dataStore.history.time,
-                datasets: [{
-                    data: dataStore.history.temperature,
-                    borderColor: '#2DFF00'
-                }]
-            },
-            options: chartOptions
-        });
-
-        var ctx = document.getElementById('HumChart');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: dataStore.history.time,
-                datasets: [{
-                    data: dataStore.history.humidity,
-                    borderColor: '#2DFF00'
-                }]
-            },
-            options: chartOptions
-        });
-
-        var ctx = document.getElementById('PresChart');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: dataStore.history.time,
-                datasets: [{
-                    data: dataStore.history.pressure,
-                    borderColor: '#2DFF00'
-                }]
-            },
-            options: chartOptions
-        });
-
-        var ctx = document.getElementById('WindChart');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: dataStore.history.time,
-                datasets: [{
-                    data: dataStore.history.windspeed,
-                    borderColor: '#2DFF00'
-                }]
-            },
-            options: chartOptions
-        });
-     }
-  }
+ }
 });

@@ -3,6 +3,21 @@ dataStore.warnings = {
     text:''
 };
 
+function loadWeatherWarnings(){
+
+    App.$f7.request.get('http://api.wunderground.com/api/c6e1c7dd478fbb42/alerts/lang:NL/q/NL/ijsselstein.json', function(data){
+    data = JSON.parse(data);
+    if(data.alerts.length === 0){
+        dataStore.warnings.text = 'No weather warninings are currently issued. This may change so keep updated via local infromation sources ';
+        }
+    else{
+        dataStore.warnings.alerts = data.alerts;
+        }
+     });
+ };
+
+
+
 Vue.component('warnings',{
     template:'\
     <div class="page">\
@@ -37,26 +52,15 @@ mounted: function(){
     if(dataStore.isScrollable){
         App.scrollToTop();
     }
-    var instance = this;
     setTimeout(function(){
-        instance.loadWeatherWarnings();
-        setInterval(this.loadWeatherWarnings, 600000);
+        loadWeatherWarnings();
     }, 3000);
-
+    document.addEventListener('WarningCall',function(){
+        loadWeatherWarnings();
+    });
 },
 
 methods:{
-loadWeatherWarnings: function(){
 
-    App.$f7.request.get('http://api.wunderground.com/api/c6e1c7dd478fbb42/alerts/lang:NL/q/NL/ijsselstein.json', function(data){
-    data = JSON.parse(data);
-    if(data.alerts.length === 0){
-        dataStore.warnings.text = 'No weather warninings are currently issued. This may change so keep updated via local infromation sources ';
-        }
-    else{
-        dataStore.warnings.alerts = data.alerts;
-        }
-     });
-   }
  }
 });
