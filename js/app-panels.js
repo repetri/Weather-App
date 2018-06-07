@@ -95,8 +95,7 @@ methods: {
         elements[0].scrollTo(0,0);
     },
     historyClicked: function(event){
-        document.dispatchEvent(new Event('newHistoryData'));
-        App.$f7.router.navigate("/history/");        
+        document.dispatchEvent(new Event('newHistoryData'));        
     },
     APICall: function(){
         setInterval(function(){
