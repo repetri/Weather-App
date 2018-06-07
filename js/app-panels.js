@@ -21,7 +21,8 @@ var App = new Vue({
         },
         {
             path:'/history/',
-            component:'history'
+            component:'history',
+            options:'history:false'
         },
         {
             path:'/warnings/',
@@ -95,7 +96,7 @@ methods: {
     },
     historyClicked: function(event){
 
-        App.$f7.router.navigate("/history/", {reloadAll: true});
+        App.$f7.router.navigate("/history/");
         document.dispatchEvent(new Event('newHistoryData'));
 
     },
