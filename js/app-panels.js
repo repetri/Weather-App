@@ -96,7 +96,7 @@ methods: {
     },
     historyClicked: function(event){
         document.dispatchEvent(new Event('newHistoryData'));
-        App.$f7.router.navigate("/history/",{reloadCurrent: true});        
+        App.$f7.router.navigate("/history/");        
     },
     APICall: function(){
         setInterval(function(){
