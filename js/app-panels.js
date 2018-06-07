@@ -95,8 +95,8 @@ methods: {
         elements[0].scrollTo(0,0);
     },
     historyClicked: function(event){
-
-        //document.dispatchEvent(new Event('newHistoryData'));
+        App.$f7.router.clearPreviousHistory();
+        document.dispatchEvent(new Event('newHistoryData'));
 
     },
     APICall: function(){
