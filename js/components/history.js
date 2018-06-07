@@ -98,7 +98,6 @@ function renderGraphs(){
         },
         options: chartOptions
     });
-    ctx.render()
     console.log("should renderGraphs");
 };
 
@@ -151,7 +150,7 @@ mounted: function(){
     }
     document.addEventListener('HistoryCall',loadHistory());
     document.addEventListener('newHistoryData', function(){
-        renderGraphs();
+        page.view.router.navigate('/history/',{reloadCurrent: true, ignoreCache: true});
     });
 },
 
