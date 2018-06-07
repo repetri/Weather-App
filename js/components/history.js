@@ -45,7 +45,6 @@ function loadHistory(){
     dataStore.history.pressure = (JSON.parse(localStorage.getItem('pressureData')) != null) ? JSON.parse(localStorage.getItem('pressureData')) : [];
     dataStore.history.windspeed = (JSON.parse(localStorage.getItem('windspeedData')) != null) ? JSON.parse(localStorage.getItem('windspeedData')) : [];
     renderGraphs();
-    console.log("loadHistory");
 };
 
 function renderGraphs(){
@@ -100,7 +99,6 @@ function renderGraphs(){
         },
         options: chartOptions
     });
-    console.log("renderGraphs");
 };
 
 
