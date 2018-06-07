@@ -103,6 +103,7 @@ methods: {
             document.dispatchEvent(new Event('ForecastCall'));
             document.dispatchEvent(new Event('HistoryCall'));
             document.dispatchEvent(new Event('WarningCall'));
+            console.log("emited events");
         },600000);
     }
   }
