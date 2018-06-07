@@ -94,8 +94,7 @@ methods: {
         elements[0].scrollTo(0,0);
     },
     historyClicked: function(event){
-        App.$f7.router.clearPreviousHistory();
-        App.$f7.router.navigate("/history/", {pushState: false});
+        App.$f7.router.navigate("/history/", {reloadCurrent: true});
         document.dispatchEvent(new Event('newHistoryData'));
 
     },
