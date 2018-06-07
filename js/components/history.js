@@ -150,9 +150,7 @@ mounted: function(){
         App.scrollToTop();
     }
     loadHistory();
-    document.addEventListener('HistoryCall',function(){
-        loadHistory();
-    });
+    document.addEventListener('HistoryCall',loadHistory());
 },
 
 methods:{
