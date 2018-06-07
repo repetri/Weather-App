@@ -149,7 +149,7 @@ mounted: function(){
     if(dataStore.isScrollable){
         App.scrollToTop();
     }
-    loadHistory();
+    //loadHistory();
     document.addEventListener('HistoryCall',loadHistory());
 },
 
