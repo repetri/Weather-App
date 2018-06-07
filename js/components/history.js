@@ -150,7 +150,7 @@ mounted: function(){
     }
     document.addEventListener('HistoryCall',loadHistory());
     document.addEventListener('newHistoryData', function(){
-        console.log(App.$f7.router.history)});
+        renderGraphs();});
 },
 
 methods:{
