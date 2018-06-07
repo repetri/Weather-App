@@ -95,7 +95,7 @@ methods: {
     },
     historyClicked: function(event){
         document.dispatchEvent(new Event('newHistoryData'));
-        console.log(router.history);
+        console.log(App.router.history);
     },
     APICall: function(){
         setInterval(function(){
