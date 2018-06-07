@@ -95,7 +95,8 @@ methods: {
     },
     historyClicked: function(event){
         document.dispatchEvent(new Event('newHistoryData'));
-        console.log(App.router.history);
+
+        console.log(App.$f7.router.currentRoute);
     },
     APICall: function(){
         setInterval(function(){
