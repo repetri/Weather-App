@@ -96,7 +96,7 @@ methods: {
     },
     historyClicked: function(event){
 
-        App.$f7.router.navigate("/history/");
+        //App.$f7.router.navigate("/history/");
         document.dispatchEvent(new Event('newHistoryData'));
 
     },
