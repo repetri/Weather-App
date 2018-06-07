@@ -146,6 +146,7 @@ data: function(){
 },
 
 mounted: function(){
+    App.$f7.router.clearPerviousHistory();
     if(dataStore.isScrollable){
         App.scrollToTop();
     }
