@@ -95,6 +95,7 @@ methods: {
     },
     historyClicked: function(event){
         document.dispatchEvent(new Event('newHistoryData'));
+        console.log('emit event');
     },
     APICall: function(){
         setInterval(function(){
