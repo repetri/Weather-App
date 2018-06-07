@@ -99,6 +99,7 @@ function renderGraphs(){
         },
         options: chartOptions
     });
+    console.log("should renderGraphs");
 };
 
 
