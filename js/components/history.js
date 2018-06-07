@@ -44,7 +44,7 @@ function loadHistory(){
     dataStore.history.humidity = (JSON.parse(localStorage.getItem('humidityData')) != null) ? JSON.parse(localStorage.getItem('humidityData')) : [];
     dataStore.history.pressure = (JSON.parse(localStorage.getItem('pressureData')) != null) ? JSON.parse(localStorage.getItem('pressureData')) : [];
     dataStore.history.windspeed = (JSON.parse(localStorage.getItem('windspeedData')) != null) ? JSON.parse(localStorage.getItem('windspeedData')) : [];
-    //renderGraphs();
+    renderGraphs();
 };
 
 function renderGraphs(){
