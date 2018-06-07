@@ -96,8 +96,7 @@ methods: {
     },
     historyClicked: function(event){
 
-        //App.$f7.router.navigate("/history/");
-        document.dispatchEvent(new Event('newHistoryData'));
+        //document.dispatchEvent(new Event('newHistoryData'));
 
     },
     APICall: function(){
