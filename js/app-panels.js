@@ -22,7 +22,7 @@ var App = new Vue({
         {
             path:'/history/',
             component:'history',
-            options:'history:false'
+            options:'reloadCurrent: true'
         },
         {
             path:'/warnings/',
