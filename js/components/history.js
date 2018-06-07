@@ -146,7 +146,7 @@ data: function(){
 },
 
 mounted: function(){
-    App.$f7.router.refreshPage();
+    App.$f7.router.refreshPage("/history/");
     if(dataStore.isScrollable){
         App.scrollToTop();
     }
