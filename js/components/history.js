@@ -155,7 +155,7 @@ mounted: function(){
         loadHistory();
     });
     document.addEventListener('newHistoryData',function(){
-        renderGraphs();
+        loadHistory();
         console.log("newHistoryData added");
     });
 },
