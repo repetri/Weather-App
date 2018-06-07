@@ -54,6 +54,7 @@ mounted: function(){
   document.addEventListener('locationFound', function(){});
   this.fetchCoords();
   this.$f7.router.navigate('/forecast/',{});
+  this.$f7.router.xhrCacheIgnore("/history/");
   this.APICall();
 },
 // App root methods
@@ -95,8 +96,7 @@ methods: {
     },
     historyClicked: function(event){
         document.dispatchEvent(new Event('newHistoryData'));
-        App.$f7.router.clearPreviousHistory();
-        //console.log(App.$f7.router.currentRoute);
+
     },
     APICall: function(){
         setInterval(function(){
