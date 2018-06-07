@@ -150,7 +150,7 @@ mounted: function(){
     }
     document.addEventListener('HistoryCall',loadHistory());
     document.addEventListener('newHistoryData', function(){
-        page.view.router.navigate('/history/',{reloadCurrent: true, ignoreCache: true});
+        App.$f7.page.view.router.navigate('/history/',{reloadCurrent: true, ignoreCache: true});
     });
 },
 
