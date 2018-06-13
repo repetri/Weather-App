@@ -25,7 +25,6 @@ var App = new Vue({
             options:{
                 reloadAll:true,
             },
-
         },
         {
             path:'/warnings/',
