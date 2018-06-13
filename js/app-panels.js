@@ -6,6 +6,7 @@ Vue.use(Framework7Vue, Framework7);
 
 var App = new Vue({
   // App Root Element
+  cahce: false
   el: '#app',
   // Init Framework7. All Framework7 parameters should be passed in "framework7" property, e.g.:
   framework7: {
@@ -95,7 +96,7 @@ methods: {
         elements[0].scrollTo(0,0);
     },
     historyClicked: function(event){
-        document.dispatchEvent(new Event('newHistoryData'));        
+        document.dispatchEvent(new Event('newHistoryData'));
     },
     APICall: function(){
         setInterval(function(){
