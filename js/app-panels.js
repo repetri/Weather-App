@@ -6,7 +6,7 @@ Vue.use(Framework7Vue, Framework7);
 
 var App = new Vue({
   // App Root Element
-  cahce: false
+  cahce: false,
   el: '#app',
   // Init Framework7. All Framework7 parameters should be passed in "framework7" property, e.g.:
   framework7: {
