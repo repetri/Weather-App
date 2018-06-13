@@ -20,7 +20,7 @@
                 <f7-list>
                     <f7-list-button title="Weersverwachting" link="/forecast/" color="blue" panel-close></f7-list-button>
                     <f7-list-button title="Huidig weer" link="/current/" color="blue" panel-close></f7-list-button>
-                    <f7-list-button reload-all:true title="Weer geschiedenis"  link="/history/" color="blue" panel-close v-on:click="historyClicked"></f7-list-button>
+                    <f7-list-button reload-all:true title="Weer geschiedenis"  link="/history/" data-ignore-cache="true" color="blue" panel-close v-on:click="historyClicked"></f7-list-button>
                     <f7-list-button title="Weeralarm (Engels)" link="/warnings/" color="blue" panel-close></f7-list-button>
                 </f7-list>
             </f7-panel>
