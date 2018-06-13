@@ -22,7 +22,7 @@ var App = new Vue({
         {
             path:'/history/',
             component:'history',
-            options:'ignoreCache: true'
+            options:'data-ignore-cache="true"'
 
         },
         {
