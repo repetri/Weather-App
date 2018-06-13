@@ -22,7 +22,10 @@ var App = new Vue({
         {
             path:'/history/',
             component:'history',
-            options:'data-ignore-cache="true"'
+            options:{
+                pushState:true,
+                history:false,
+            },
 
         },
         {
