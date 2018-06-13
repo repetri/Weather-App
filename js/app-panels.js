@@ -23,8 +23,7 @@ var App = new Vue({
             path:'/history/',
             component:'history',
             options:{
-                pushState:true,
-                history:false,
+                reloadAll:true,
             },
 
         },
